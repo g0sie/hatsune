@@ -1,3 +1,3 @@
-def greet():
-    print('hello from here')
-    return 'hello from here'
+def greet(phrase = 'hello from here'):
+    print(phrase)
+    return phrase
