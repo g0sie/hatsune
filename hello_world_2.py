@@ -1,3 +1,4 @@
-def greet():
-    print('hello from here')
-    return 'hello from here'
+def greet(phrase = 'hello from here'):
+    print('dupa')
+    print(phrase)
+    return phrase
