@@ -1,0 +1,1 @@
+.\venv\Scripts\activate.bat & pip install -r requirements.txt & python .\hatsune_backend\manage.py runserver
