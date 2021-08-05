@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue hello world</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+      #timer {
+        display: flex;
+        flex-direction: row;
+      }
+
+      #counter {
+        flex: 2;
+      }
+
+      button {
+        flex: 1;
+      }
+
+      #textWrapper {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #textWrapper div {
+        height: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        show counter:
+        <input type="checkbox" v-model="seeCounter" />
+      </div>
+      <div id="timer" v-if="seeCounter">
+        <div id="counter">Counter: {{ counter / 10 }}</div>
+        <button v-on:click="startCounter">Start the counter</button>
+        <button v-on:click="stopCounter">Stop the counter</button>
+      </div>
+      <div id="textWrapper" v-if="!seeCounter">
+        <div>Text: {{ text }}</div>
+        <input v-model="text" />
+      </div>
+    </div>
+
+    <script>
+      const Counter = {
+        data: () => ({
+          counter: 0,
+          intervalId: null,
+          text: "",
+          seeCounter: true,
+        }),
+        mounted() {
+          this.intervalId = setInterval(() => this.counter++, 100);
+        },
+        methods: {
+          stopCounter() {
+            clearInterval(this.intervalId);
+          },
+          startCounter() {
+            this.intervalId = setInterval(() => this.counter++, 100);
+          },
+        },
+      };
+
+      Vue.createApp(Counter).mount("#app");
+    </script>
+  </body>
+</html>
