@@ -2,10 +2,9 @@ __pycache__
 venv
 .env
 *.sqlite3
-
+backend/env
 node_modules
 .DS_Store
 dist
 dist-ssr
 *.local
-
