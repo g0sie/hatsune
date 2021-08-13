@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.requests import Request
 from pydantic import BaseModel
+from typing import Optional
 
 app = FastAPI()
 
@@ -43,3 +44,10 @@ async def ping_echo(data: RequestData):
 @app.get('/numbers/{numbers}')
 def number(numbers: int):
     return [{'number': number} for number in range(0, numbers + 1)]
+
+
+# http://127.0.0.1:8000/login?username=admin&password=admin
+@app.get('/login')
+def login(username: Optional[str] = None, password: Optional[str] = None):
+    logged = True if username == 'admin' and password == 'admin' else False
+    return {'logged': logged}
