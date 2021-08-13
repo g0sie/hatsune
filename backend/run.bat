@@ -1,1 +1,1 @@
-.\venv\Scripts\activate.bat & pip install -r requirements.txt & python .\hatsune_backend\manage.py runserver
+.\venv\Scripts\activate.bat & pip install -r requirements.txt & python -m uvicorn app.main:app --port 8000 --reload

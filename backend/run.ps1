@@ -2,4 +2,4 @@
 
 pip install -r requirements.txt
 
-python .\hatsune_backend\manage.py runserver
+python uvicorn main:app -p 8000 --reload
