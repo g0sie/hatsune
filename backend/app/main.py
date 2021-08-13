@@ -2,7 +2,6 @@ from typing import Optional
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from starlette.requests import Request
 from pydantic import BaseModel
 from typing import Optional
 
@@ -51,3 +50,13 @@ def number(numbers: int):
 def login(username: Optional[str] = None, password: Optional[str] = None):
     logged = True if username == 'admin' and password == 'admin' else False
     return {'logged': logged}
+
+
+class User(BaseModel):
+    username: str
+    password: str
+
+
+@app.post('/register')
+def register(user: User):
+    return {user.username: 'registered'}
