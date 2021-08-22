@@ -1,1 +1,1 @@
-.\venv\Scripts\activate.bat & pip install -r requirements.txt & python -m uvicorn app.main:app --port 8000 --reload
+.\venv\Scripts\activate.bat & pip install -r requirements.txt & docker-compose up -d & python -m uvicorn app.main:app --port 8000 --reload
