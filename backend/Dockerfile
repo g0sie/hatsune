@@ -1,7 +1,6 @@
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
+FROM tiangolo/uvicorn-gunicorn:python3.8-slim
 
-COPY requirements.txt requirements.txt
-
+COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY ./app /app
+COPY . .

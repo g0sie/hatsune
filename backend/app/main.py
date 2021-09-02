@@ -1,8 +1,10 @@
-from typing import Optional
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from sqlalchemy import engine
+from . import schemas, models
+from .database import SessionLocal, engine
+
+models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
@@ -19,10 +21,6 @@ app.add_middleware(
 )
 
 
-class RequestData(BaseModel):
-    text: str
-
-
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
@@ -34,6 +32,6 @@ def test_echo():
 
 
 @app.post('/ping')
-async def ping_echo(data: RequestData):
+async def ping_echo(data: schemas.RequestData):
     print(data)
     return data
